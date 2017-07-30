@@ -105,9 +105,32 @@
     <Content Include="Scripts\Usuario\registrarCancha.js" />
     <Content Include="Scripts\Usuario\registrarUsuario.js" />
     <Content Include="Sources\img\1.jpg" />
+    <Content Include="Sources\img\10.jpg" />
+    <Content Include="Sources\img\11.jpg" />
+    <Content Include="Sources\img\12.jpg" />
+    <Content Include="Sources\img\13.jpg" />
+    <Content Include="Sources\img\14.jpg" />
+    <Content Include="Sources\img\15.jpg" />
+    <Content Include="Sources\img\16.jpg" />
+    <Content Include="Sources\img\17.jpg" />
+    <Content Include="Sources\img\18.jpg" />
+    <Content Include="Sources\img\19.jpg" />
     <Content Include="Sources\img\2.jpg" />
+    <Content Include="Sources\img\20.jpg" />
+    <Content Include="Sources\img\21.jpg" />
+    <Content Include="Sources\img\22.jpg" />
+    <Content Include="Sources\img\23.jpg" />
+    <Content Include="Sources\img\24.jpg" />
+    <Content Include="Sources\img\25.jpg" />
+    <Content Include="Sources\img\26.jpg" />
+    <Content Include="Sources\img\27.jpg" />
     <Content Include="Sources\img\3.jpg" />
     <Content Include="Sources\img\4.jpg" />
+    <Content Include="Sources\img\5.jpg" />
+    <Content Include="Sources\img\6.jpg" />
+    <Content Include="Sources\img\7.jpg" />
+    <Content Include="Sources\img\8.jpg" />
+    <Content Include="Sources\img\9.jpg" />
     <Content Include="Web.config" />
     <Content Include="Views\Usuario\ListaUsuarios.cshtml" />
     <Content Include="Views\Usuario\usuarios.cshtml" />
@@ -115,6 +138,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\publicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,6 +164,9 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\canchas.cshtml" />
     <Content Include="Views\Usuario\RegistrarCancha.cshtml" />
+    <Content Include="Views\publico\RegistroReserva.cshtml" />
+    <Content Include="Views\publico\TerminosYCondiciones.cshtml" />
+    <Content Include="Views\publico\ResultadoBusqueda.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

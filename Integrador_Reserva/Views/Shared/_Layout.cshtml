@@ -24,6 +24,8 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Lista usuarios", "ListaUsuarios", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Registro Reserva", "RegistroReserva", "Publico", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Resultado Busqueda", "ResultadoBusqueda", "Publico", new { area = "" }, new { @class = "navbar-brand" })
 
              </div>
             <div class="navbar-collapse collapse">
@@ -37,7 +39,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year -Todos los derechos reservados. -
+             @Html.ActionLink("Términos legales", "TerminosYCondiciones", "Publico") -
+            </p>
         </footer>
     </div>
 </body>
