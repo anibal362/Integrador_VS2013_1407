@@ -16,7 +16,7 @@ namespace Integrador_Reserva.Sources.Logic
         {
             return usuarioDataAccess.listaUsuario();
         }
-
+        
         public string registrarUsuario(Usuario usuario)
         {
             string msg = String.Empty;
@@ -24,6 +24,30 @@ namespace Integrador_Reserva.Sources.Logic
             try
             {
                 bool flag = usuarioDataAccess.RegistrarUsuario(usuario);
+
+                msg = flag ? "Se registró correctamente" : "Sucedio un error";
+            }
+            catch (Exception)
+            {
+                msg = "Error de logica";
+                throw;
+            }
+
+            return msg;
+        }
+
+        public List<Cancha> ListaCanchasxIdUsuario(int id)
+        {
+            return usuarioDataAccess.ListaCanchasxIdUsuario(id);
+        }
+
+        public string registrarCancha(Cancha cancha)
+        {
+            string msg = String.Empty;
+
+            try
+            {
+                bool flag = usuarioDataAccess.registrarCancha(cancha);
 
                 msg = flag ? "Se registró correctamente" : "Sucedio un error";
             }

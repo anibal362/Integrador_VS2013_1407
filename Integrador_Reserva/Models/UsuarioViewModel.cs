@@ -9,5 +9,7 @@ namespace Integrador_Reserva.Models
     {
         public Usuario usuario { get; set; }
         public List<Usuario> listaUsuarios { get; set; }
+
     }
+    
 }

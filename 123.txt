@@ -1,0 +1,14 @@
+registro de canchas
+	url
+
+usuario
+	distrito
+
+
+bbdd
+
+distrito
+tabla maestra
+
+url
+cancha

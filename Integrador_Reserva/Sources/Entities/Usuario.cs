@@ -17,9 +17,5 @@ namespace Integrador_Reserva.Sources.Entities
         public string usuario_foto_url { get; set; }
         public string usuario_presentacion { get; set; }
         public Boolean activo { get; set; }
-        public string usuario_creacion { get; set; }
-        public string usuario_modificacion { get; set; }
-        public DateTime fecha_creacion { get; set; }
-        public DateTime fecha_modificacion { get; set; }
     }
 }

@@ -8,13 +8,12 @@ namespace Integrador_Reserva.Sources.Connection
 {
     public class Conexion
     {
-        private static Conexion objConexion = null;
 
         private SqlConnection con;
 
         public Conexion()
         {
-            con = new SqlConnection(Constante.CON_DATABASE);
+            
 
         }
 
@@ -31,6 +30,11 @@ namespace Integrador_Reserva.Sources.Connection
         public void cerrarConexion()
         {
             con.Close();
+        }
+
+        public void asignarBaseDatos()
+        {
+            con = new SqlConnection(Constante.CON_DATABASE);
         }
     }
 }

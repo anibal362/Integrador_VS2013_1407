@@ -8,8 +8,6 @@
 @using (Html.BeginForm("Registrar", "Usuario", FormMethod.Post, new { @id = "frm-registroUsuario", @class = "well" }))
 {
     <h2>Registro de Usuarios</h2>
-    @Html.LabelFor(user => user.usuario.usuario_id)
-    @Html.TextBoxFor(user => user.usuario.usuario_id, new {@maxlength = 9, @minlength = 1 })
     <br />
     @Html.LabelFor(user => user.usuario.usuario_nombre)
     @Html.TextBoxFor(user => user.usuario.usuario_nombre)
@@ -35,20 +33,7 @@
     @Html.LabelFor(user => user.usuario.usuario_presentacion)
     @Html.TextBoxFor(user => user.usuario.usuario_presentacion)
     <br />
-    @Html.LabelFor(user => user.usuario.activo)
-    @Html.TextBoxFor(user => user.usuario.activo)
-    <br />
-    @Html.LabelFor(user => user.usuario.usuario_creacion)
-    @Html.TextBoxFor(user => user.usuario.usuario_creacion)
-    <br />
-    @Html.LabelFor(user => user.usuario.usuario_modificacion)
-    @Html.TextBoxFor(user => user.usuario.usuario_modificacion)
-    <br />
-    @Html.LabelFor(user => user.usuario.fecha_creacion)
-    @Html.TextBoxFor(user => user.usuario.fecha_creacion)
-    <br />
-    @Html.LabelFor(user => user.usuario.fecha_modificacion)
-    @Html.TextBoxFor(user => user.usuario.fecha_modificacion)
+    
 
     <br />
     <input type="button" class="btn btn-primary span2" value="Registrar" id="btn_Registrar" />

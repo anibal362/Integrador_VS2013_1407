@@ -9,24 +9,22 @@ using Integrador_Reserva.Sources.Connection;
 
 namespace Integrador_Reserva.Sources.DataAccess
 {
-    public class UsuarioDataAccess
+    public class UsuarioDataAccess:Conexion
     {
-
-        private Conexion conexion;
         private SqlCommand command;
+        
 
         public UsuarioDataAccess()
         {
-            conexion = new Conexion();
+            asignarBaseDatos();
         }
-
         public List<Usuario> listaUsuario()
         {
             List<Usuario> lista = new List<Usuario>();
             Usuario usuario;
-            conexion.iniciarConexion();
-            command = new SqlCommand("selectAllUsuario", conexion.getCon());
-            // DbCommand cmd = dataBase.GetStoredProcCommand(Procedimiento.USP_SEL_LISTAUSUARIO);
+            iniciarConexion();
+
+            command = new SqlCommand(Constante.USP_SEL_LISTAUSUARIO, getCon());
             command.CommandType = CommandType.StoredProcedure;
 
             using (IDataReader iDataReader = command.ExecuteReader())
@@ -40,83 +38,97 @@ namespace Integrador_Reserva.Sources.DataAccess
                 int iUsuario_telefono = iDataReader.GetOrdinal("usuario_telefono");
                 int iUsuario_foto_url = iDataReader.GetOrdinal("usuario_foto_url");
                 int iUsuario_presentacion = iDataReader.GetOrdinal("usuario_presentacion");
-                int iactivo = iDataReader.GetOrdinal("activo");
-                int iUsuario_creacion = iDataReader.GetOrdinal("usuario_creacion");
-                int iUsuario_modificacion = iDataReader.GetOrdinal("usuario_modificacion");
-                int ifecha_creacion = iDataReader.GetOrdinal("fecha_creacion");
-                int ifecha_modificacion = iDataReader.GetOrdinal("fecha_modificacion");
 
                 while (iDataReader.Read())
                 {
                     usuario = new Usuario();
-                    usuario.usuario_id = DataUtil.DbValueToDefault<Int32>(iDataReader[iUsuario_id]);
-                    usuario.usuario_nombre = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_nombre]);
-                    usuario.usuario_contraseña = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_contraseña]);
-                    usuario.usuario_razonsocial = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_razonsocial]);
-                    usuario.usuario_ruc = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_ruc]);
-                    usuario.usuario_email = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_email]);
-                    usuario.usuario_telefono = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_telefono]);
-                    usuario.usuario_foto_url = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_foto_url]);
-                    usuario.usuario_presentacion = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_presentacion]);
-                    usuario.activo = DataUtil.DbValueToDefault<Boolean>(iDataReader[iactivo]);
-                    usuario.usuario_creacion = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_creacion]);
-                    usuario.usuario_modificacion = DataUtil.DbValueToDefault<string>(iDataReader[iUsuario_modificacion]);
-                    usuario.fecha_creacion = DataUtil.DbValueToDefault<DateTime>(iDataReader[ifecha_creacion]);
-                    usuario.fecha_modificacion = DataUtil.DbValueToDefault<DateTime>(iDataReader[ifecha_modificacion]);
+                    usuario.usuario_id = DataUtil.ValueOfDataBase<Int32>(iDataReader[iUsuario_id]);
+                    usuario.usuario_nombre = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_nombre]);
+                    usuario.usuario_contraseña = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_contraseña]);
+                    usuario.usuario_razonsocial = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_razonsocial]);
+                    usuario.usuario_ruc = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_ruc]);
+                    usuario.usuario_email = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_email]);
+                    usuario.usuario_telefono = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_telefono]);
+                    usuario.usuario_foto_url = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_foto_url]);
+                    usuario.usuario_presentacion = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_presentacion]);
+                    
                     lista.Add(usuario);
                 }
             }
-            conexion.cerrarConexion();
+            cerrarConexion();
             return lista;
         }
 
         public bool RegistrarUsuario(Usuario usuario)
         {
-            conexion.iniciarConexion();
+            iniciarConexion();
 
-             command = new SqlCommand(Constante.USP_INS_USUARIO, conexion.getCon());
-             command.CommandType = CommandType.StoredProcedure;
-
-
-            SqlParameter pUsuario_id = new SqlParameter();
-
-            command.Parameters.Add("@usuario_id",SqlDbType.Int);
-            command.Parameters.Add("@usuario_nombre", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_contraseña", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_razonsocial", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_ruc", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_email", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_telefono", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_foto_url", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_presentacion", SqlDbType.VarChar);
-            command.Parameters.Add("@activo", SqlDbType.Binary);
-            command.Parameters.Add("@usuario_creacion", SqlDbType.VarChar);
-            command.Parameters.Add("@usuario_modificacion", SqlDbType.VarChar);
-            command.Parameters.Add("@fecha_creacion", SqlDbType.DateTime );
-            command.Parameters.Add("@fecha_modificacion", SqlDbType.DateTime);
-
-            command.Parameters["@usuario_id"].Value = usuario.usuario_id;
-            command.Parameters["@usuario_nombre"].Value = usuario.usuario_nombre;
-            command.Parameters["@usuario_contraseña"].Value = usuario.usuario_contraseña;
-            command.Parameters["@usuario_razonsocial"].Value = usuario.usuario_razonsocial;
-            command.Parameters["@usuario_ruc"].Value = usuario.usuario_ruc;
-            command.Parameters["@usuario_email"].Value = usuario.usuario_email;
-            command.Parameters["@usuario_telefono"].Value = usuario.usuario_telefono;
-            command.Parameters["@usuario_foto_url"].Value = usuario.usuario_foto_url;
-            command.Parameters["@usuario_presentacion"].Value = usuario.usuario_presentacion;
-            command.Parameters["@activo"].Value = usuario.activo;
-            command.Parameters["@usuario_creacion"].Value = usuario.usuario_creacion;
-            command.Parameters["@usuario_modificacion"].Value = usuario.usuario_modificacion;
-            command.Parameters["@fecha_creacion"].Value = usuario.fecha_creacion;
-            command.Parameters["@fecha_modificacion"].Value = usuario.fecha_modificacion;
-           
-           //  dataBase.AddInParameter(dbCommand, "@fecha_modificacion", DbType.DateTime , usuario.fecha_modificacion);
-
-             var resultado = command.ExecuteNonQuery();
-
-            conexion.cerrarConexion();
-
+            command = new SqlCommand(Constante.USP_INS_USUARIO, getCon());
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add("@usuario_nombre", SqlDbType.VarChar).Value = usuario.usuario_nombre;
+            command.Parameters.Add("@usuario_contraseña", SqlDbType.VarChar).Value = usuario.usuario_contraseña;
+            command.Parameters.Add("@usuario_razonsocial", SqlDbType.VarChar).Value = usuario.usuario_razonsocial;
+            command.Parameters.Add("@usuario_ruc", SqlDbType.VarChar).Value = usuario.usuario_ruc;
+            command.Parameters.Add("@usuario_email", SqlDbType.VarChar).Value = usuario.usuario_email;
+            command.Parameters.Add("@usuario_telefono", SqlDbType.VarChar).Value = usuario.usuario_telefono;
+            command.Parameters.Add("@usuario_foto_url", SqlDbType.VarChar).Value = usuario.usuario_foto_url;
+            command.Parameters.Add("@usuario_presentacion", SqlDbType.VarChar).Value = usuario.usuario_presentacion;
+            var resultado = command.ExecuteNonQuery();
+            cerrarConexion();
             return resultado == null ? false : true;
+        }
+
+        public bool registrarCancha(Cancha cancha)
+        {
+            iniciarConexion();
+
+            command = new SqlCommand(Constante.USP_INS_CANCHA, getCon());
+            
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.Add("@cancha_usuario_id", SqlDbType.Int).Value=cancha.cancha_usuario_id;
+            command.Parameters.Add("@cancha_nombre", SqlDbType.VarChar).Value=cancha.cancha_nombre;
+            command.Parameters.Add("@cancha_descripcion", SqlDbType.VarChar).Value=cancha.cancha_descripcion;
+            command.Parameters.Add("@cancha_tipo_id", SqlDbType.Int).Value=cancha.cancha_tipo_id;
+            command.Parameters.Add("@cancha_distrito_id", SqlDbType.Int).Value=cancha.cancha_distrito_id;
+            var resultado = command.ExecuteNonQuery();
+            cerrarConexion();
+            return resultado == null ? false : true;
+        }
+
+        public List<Cancha> ListaCanchasxIdUsuario(int id)
+        {
+            List<Cancha> listaCanchas = new List<Cancha>();
+            Cancha cancha;
+            iniciarConexion();
+
+            command = new SqlCommand(Constante.USP_SEL_ALLCANCHAxUSUARIO_ID, getCon());
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add("@cancha_usuario_id", SqlDbType.Int).Value=id;
+
+            using (IDataReader iDataReader = command.ExecuteReader())
+            {
+                int iCancha_id = iDataReader.GetOrdinal("cancha_id");
+                int iCancha_usuario_id = iDataReader.GetOrdinal("cancha_usuario_id");
+                int iCancha_nombre = iDataReader.GetOrdinal("cancha_nombre");
+                int iCancha_descripcion = iDataReader.GetOrdinal("cancha_descripcion");
+                int iCancha_distrito = iDataReader.GetOrdinal("cancha_distrito");
+                int iCancha_tipo = iDataReader.GetOrdinal("cancha_tipo");
+
+                while (iDataReader.Read())
+                {
+                    cancha = new Cancha();
+                    cancha.cancha_id = DataUtil.ValueOfDataBase<Int32>(iDataReader[iCancha_id]);
+                    cancha.cancha_usuario_id= DataUtil.ValueOfDataBase<Int32>(iDataReader[iCancha_usuario_id]);
+                    cancha.cancha_nombre = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_nombre]);
+                    cancha.cancha_descripcion = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_descripcion]);
+                    cancha.cancha_tipo = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_tipo]);
+                    cancha.cancha_distrito = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_distrito]);
+                    listaCanchas.Add(cancha);
+                }
+            }
+            cerrarConexion();
+            return listaCanchas;
         }
     }
 }

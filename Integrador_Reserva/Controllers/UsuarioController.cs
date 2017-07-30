@@ -19,19 +19,52 @@ namespace Integrador_Reserva.Controllers
 
         public ActionResult ListaUsuarios()
         {
-            UsuarioBusinessLogic uBL = new UsuarioBusinessLogic();
-            UsuarioViewModel uVM = new UsuarioViewModel();
-            uVM.listaUsuarios = uBL.listaUsuario();
-            return View(uVM);
+            UsuarioBusinessLogic usuarioBusinessLogic = new UsuarioBusinessLogic();
+
+            UsuarioViewModel usuarioViewModel = new UsuarioViewModel();
+
+            usuarioViewModel.listaUsuarios = usuarioBusinessLogic.listaUsuario();
+            return View(usuarioViewModel);
         }
 
-[HttpGet]
+        public ActionResult ListaCanchas()
+        {
+            UsuarioBusinessLogic uBL = new UsuarioBusinessLogic();
+            UsuarioViewModel uVM = new UsuarioViewModel();
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Registrar()
         {
             UsuarioViewModel usuarioViewModel = new UsuarioViewModel();
             usuarioViewModel.usuario = new Usuario();
 
             return View(usuarioViewModel);
+        }
+
+        
+        public ActionResult RegistrarCancha(int usuario_id, string usuario_nombre, string usuario_razonsocial)
+        {
+            UsuarioCanchaViewModel objUsuarioCancha = new UsuarioCanchaViewModel();
+            objUsuarioCancha.usuario = new Usuario();
+            objUsuarioCancha.cancha = new Cancha();
+            objUsuarioCancha.usuario.usuario_id = usuario_id;
+            objUsuarioCancha.usuario.usuario_nombre = usuario_nombre;
+            objUsuarioCancha.usuario.usuario_razonsocial = usuario_razonsocial;
+            objUsuarioCancha.cancha.cancha_usuario_id = usuario_id;
+            return View(objUsuarioCancha);
+        }
+        [HttpPost]
+        public ActionResult RegistrarCancha(UsuarioCanchaViewModel usuarioCanchaViewModel)
+        {
+            string msg = String.Empty;
+            if (ModelState.IsValid)
+            {
+                msg = new UsuarioBusinessLogic().registrarCancha(usuarioCanchaViewModel.cancha);
+            }
+            return Content(msg);
         }
 
         [HttpPost]
@@ -43,6 +76,21 @@ namespace Integrador_Reserva.Controllers
                 msg = new UsuarioBusinessLogic().registrarUsuario(usuarioViewModel.usuario);
             }
             return Content(msg);
+        }
+
+        public ActionResult Edit(int usuario_id, string usuario_nombre, string usuario_razonsocial)
+        {
+            UsuarioBusinessLogic uBL = new UsuarioBusinessLogic();
+            UsuarioCanchaViewModel objUsuarioCancha = new UsuarioCanchaViewModel();
+            objUsuarioCancha.usuario = new Usuario();
+            objUsuarioCancha.usuario.usuario_id = usuario_id;
+            objUsuarioCancha.usuario.usuario_nombre = usuario_nombre;
+            objUsuarioCancha.usuario.usuario_razonsocial= usuario_razonsocial;
+
+            objUsuarioCancha.cancha = new Cancha();
+            objUsuarioCancha.listaCancha = uBL.ListaCanchasxIdUsuario(Convert.ToInt32(usuario_id));
+
+            return View(objUsuarioCancha);
         }
     }
 }

@@ -22,7 +22,11 @@
             grid.Column("usuario_email", "email", canSort: true, style: "person"),
             grid.Column("usuario_telefono", "telefono", canSort: true, style: "person"),
             grid.Column(header: "Acciones", format: (item) => new HtmlString(
-                        Html.ActionLink("Editar", "Edit", new { id = item.usuario_id }).ToString() + " | " +
+                                        Html.ActionLink("Ver canchas", "Edit", new {
+                                            usuario_id = item.usuario_id,
+                                            usuario_nombre = item.usuario_nombre,
+                                            usuario_razonsocial = item.usuario_razonsocial
+                                        }) + " | " +
                         Html.ActionLink("Eliminar", "Delete", new { id = item.usuario_id }).ToString() + " | "
                     )
             )

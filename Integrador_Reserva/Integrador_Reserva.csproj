@@ -93,7 +93,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Usuario\listar.js" />
+    <Content Include="Scripts\Usuario\registrarCancha.js" />
     <Content Include="Scripts\Usuario\registrarUsuario.js" />
+    <Content Include="Sources\img\1.jpg" />
+    <Content Include="Sources\img\2.jpg" />
+    <Content Include="Sources\img\3.jpg" />
+    <Content Include="Sources\img\4.jpg" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Usuario\ListaUsuarios.cshtml" />
@@ -106,12 +111,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsuarioCanchaViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\Connection\Conexion.cs" />
     <Compile Include="Sources\Connection\Constante.cs" />
     <Compile Include="Sources\Connection\DataUtil.cs" />
     <Compile Include="Sources\DataAccess\UsuarioDataAccess.cs" />
+    <Compile Include="Sources\Entities\Cancha.cs" />
     <Compile Include="Sources\Entities\Usuario.cs" />
     <Compile Include="Sources\Logic\UsuarioBusinessLogic.cs" />
   </ItemGroup>
@@ -125,6 +132,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Usuario\Registrar.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\canchas.cshtml" />
+    <Content Include="Views\Usuario\RegistrarCancha.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
