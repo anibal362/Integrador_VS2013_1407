@@ -6,6 +6,7 @@ using Integrador_Reserva.Sources.Entities;
 using System.Data.SqlClient;
 using System.Data;
 using Integrador_Reserva.Sources.Connection;
+using Integrador_Reserva.Sources.Logic;
 
 namespace Integrador_Reserva.Sources.DataAccess
 {
@@ -53,6 +54,87 @@ namespace Integrador_Reserva.Sources.DataAccess
                     usuario.usuario_presentacion = DataUtil.ValueOfDataBase<string>(iDataReader[iUsuario_presentacion]);
                     
                     lista.Add(usuario);
+                }
+            }
+            cerrarConexion();
+            return lista;
+        }
+
+        public List<Servicio> listaServicio()
+        {
+            List<Servicio> lista = new List<Servicio>();
+            Servicio servicio;
+            iniciarConexion();
+
+            command = new SqlCommand(Constante.USP_SEL_ALLSERVICIO, getCon());
+            command.CommandType = CommandType.StoredProcedure;
+
+            using (IDataReader iDataReader = command.ExecuteReader())
+            {
+                int iServicioId = iDataReader.GetOrdinal("cancha_servicio_id");
+                int iServicio = iDataReader.GetOrdinal("cancha_servicio");
+
+                while (iDataReader.Read())
+                {
+                    servicio = new Servicio();
+                    servicio.servicioId = DataUtil.ValueOfDataBase<Int32>(iDataReader[iServicioId]);
+                    servicio.servicio = DataUtil.ValueOfDataBase<string>(iDataReader[iServicio]);
+
+                    lista.Add(servicio);
+                }
+            }
+            cerrarConexion();
+            return lista;
+        }
+
+        internal List<Distrito> listaDistrito()
+        {
+            List<Distrito> lista = new List<Distrito>();
+            Distrito distrito;
+            iniciarConexion();
+
+            command = new SqlCommand(Constante.USP_SEL_ALLDISTRITO, getCon());
+            command.CommandType = CommandType.StoredProcedure;
+
+            using (IDataReader iDataReader = command.ExecuteReader())
+            {
+                int iDistrito_id = iDataReader.GetOrdinal("cancha_distrito_id");
+                int iDistrito = iDataReader.GetOrdinal("cancha_distrito");
+
+                while (iDataReader.Read())
+                {
+                    distrito = new Distrito();
+                    distrito.distrito_id = DataUtil.ValueOfDataBase<Int32>(iDataReader[iDistrito_id]);
+                    distrito.distrito = DataUtil.ValueOfDataBase<string>(iDataReader[iDistrito]);
+
+                    lista.Add(distrito);
+                }
+            }
+            cerrarConexion();
+            return lista;
+        }
+
+        public List<TipoCancha> listaTipoCancha()
+        {
+            List<TipoCancha> lista = new List<TipoCancha>();
+            TipoCancha tipoCancha;
+            iniciarConexion();
+
+            command = new SqlCommand(Constante.USP_SEL_ALLTIPOCANCHA, getCon());
+            command.CommandType = CommandType.StoredProcedure;
+
+            using (IDataReader iDataReader = command.ExecuteReader())
+            {
+                int iTipo_id = iDataReader.GetOrdinal("cancha_tipo_id");
+                int iTipo = iDataReader.GetOrdinal("cancha_tipo");
+
+                while (iDataReader.Read())
+                {
+                    tipoCancha = new TipoCancha();
+                    tipoCancha.tipo_id = DataUtil.ValueOfDataBase<Int32>(iDataReader[iTipo_id]);
+                    tipoCancha.tipo = DataUtil.ValueOfDataBase<string>(iDataReader[iTipo]);
+
+                    lista.Add(tipoCancha);
                 }
             }
             cerrarConexion();

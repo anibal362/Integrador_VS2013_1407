@@ -28,5 +28,15 @@ namespace Integrador_Reserva.Controllers
         {
             return View();
         }
+
+        public ActionResult RegistroCliente()
+        {
+            return View();
+        }
+
+        public ActionResult AñadirCancha()
+        {
+            return View();
+        }
     }
 }

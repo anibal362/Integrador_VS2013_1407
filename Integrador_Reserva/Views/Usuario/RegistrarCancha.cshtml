@@ -18,24 +18,10 @@
     @Html.TextBoxFor(cancha => cancha.cancha.cancha_descripcion)
     <br />
     <label>Tipo de cancha</label>
-    @Html.DropDownListFor(cancha => cancha.cancha.cancha_tipo_id, new List<SelectListItem>
-    {
-                        new SelectListItem() {Text = "5 x 5", Value="1"},
-                        new SelectListItem() {Text = "6 x 6", Value="2"},
-                        new SelectListItem() {Text = "7 x 7", Value="3"}
-    })
+    @Html.DropDownListFor(cancha => cancha.cancha.cancha_tipo_id, new SelectList(Model.listaTipos, "tipo_id", "tipo"))
+
     <label>Distrito</label>
-    @Html.DropDownListFor(cancha => cancha.cancha.cancha_distrito_id, new List<SelectListItem>
-    {
-                        new SelectListItem() {Text = "Santa Anita", Value="1"},
-                        new SelectListItem() {Text = "San Isidro", Value="2"},
-                        new SelectListItem() {Text = "Lince", Value="3"},
-                        new SelectListItem() {Text = "Surquillo", Value="4"},
-                        new SelectListItem() {Text = "Miraflores", Value="5"},
-                        new SelectListItem() {Text = "La Molina", Value="6"},
-                        new SelectListItem() {Text = "Los Olivos", Value="7"},
-                        new SelectListItem() {Text = "Rimac", Value="8"}
-    })
+    @Html.DropDownListFor(cancha => cancha.cancha.cancha_distrito_id, new SelectList(Model.listaDistritos, "distrito_id", "distrito"))
 
     <br />
     <input type="button" class="btn btn-primary span2" value="Registrar" id="btn_RegistrarCancha" />

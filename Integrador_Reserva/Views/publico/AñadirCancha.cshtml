@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "AñadirCancha";
+}
+<br /><br /><br />
+    <div>
+        <img  src="http://www.forumlibertas.com/wp-content/uploads/2017/04/futbol-2000x1218-710x434.jpg" width="100%" height="350" class="alert-success" />
+    </div>
+@using (Html.BeginForm("AñadirCancha", "Cancha", FormMethod.Post, new { @id = "frm-anadirCancha", @class = "well" }))
+{
+    <center><h2>Registra tu Cancha</h2></center>
+    <div>
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label  for="name">Nombre Cancha</label>
+                        <input id="name" name="Nombre" type="text" placeholder="Ingrese Nombre" class="form-control input-md" required="">
+                        <span class="help-block">*Obligatorio</span>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label for="selectbasic">Distrito</label>
+                        <select id="selectbasic" name="distrito" class="form-control">
+                            <option value="">--Selecciona--</option>
+                            <option value="">Lima</option>
+                            <option value="AL">San de juan miraflores</option>
+                            <option value="AK">Chorrillos</option>
+                            <option value="AZ">Villa el Sanvador</option>
+                            <option value="AR">Miraflores</option>
+                            <option value="CA">Santiago de Surco</option>
+                            <option value="CO">Rimac</option>
+                            <option value="CT">San borja</option>
+                        </select>
+                        <span class="help-block">*Ingrese Distrito</span>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label for="email">Direccion</label>
+                        <input id="email" name="direccion" type="text" placeholder="Ingrese La direccion" class="form-control input-md" required="">
+                        <span class="help-block">*Ingrese la Direccion de la Cancha</span>
+                    </div>
+                </div>
+                <!-- precio-->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label  for="Costo">Costo </label>
+                        <input id="password" name="costo" type="text" placeholder="Costo de la Cancha " class="form-control input-md" required="">
+                        <span class="help-block">*Ingres el Costo de la Cancha</span>
+                    </div>
+                </div>
+
+                <!--Tipo de Cancha -->
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label  for="selectbasic">Tipo Cancha</label>
+                        <select id="selectbasic" name="tipo" class="form-control">
+                            <option value="">--Selecciona--</option>
+                            <option value="AL">6x6</option>
+                            <option value="AK">7X7</option>
+                            <option value="AZ">11X11</option>
+                        </select>
+                        <span class="help-block">*Ingrese Capacidad</span>
+                    </div>
+                </div>
+                
+                <!--Imagen -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="imagen">Imagen Cancha</label>
+                    <div class="col-md-4">
+                        <input id="imagen" name="imagen" class="input-file" type="file">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <button id="save" name="guardar" class="btn btn-success">Registrar</button>
+                        <button id="cancel" name="cancelar" class="btn btn-danger">Calcelar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+}
+
+<div class="samp">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <p>
+        <h5>*Terminos y Condiciones</h5>
+        Todas las ventas son en firme y no se realizaran anulaciónes, reembolsos o 
+        cambios de fecha u horario de la reserva una vez que se haya confirmado su orden. 
+        Si hay un aplazamiento de fecha o cambio de hora del evento, por una razón inherente al Comité,
+         el encargado de la cancha efectuará el reporte correspondiente al administrador autorizado por LDA; 
+        para valorar la asignación de un nuevo horario de uso, en dependencia de la disponibilidad existente, 
+        el cual será comunicado al cliente por la vía telefónica. LDA;, por razones de fuerza mayor o de interés 
+        público, tiene la facultad de cancelar cualquier reservación y efectuar el reembolso o reprogramación 
+        correspondiente, siempre y cuando lo haga en un plazo no mayor a 72 horas antes del servicio programado.
+    </p>
+</div>
+
+
+
+
+

@@ -47,6 +47,7 @@ namespace Integrador_Reserva.Controllers
         
         public ActionResult RegistrarCancha(int usuario_id, string usuario_nombre, string usuario_razonsocial)
         {
+            UsuarioBusinessLogic usuarioBusinessLogic = new UsuarioBusinessLogic();
             UsuarioCanchaViewModel objUsuarioCancha = new UsuarioCanchaViewModel();
             objUsuarioCancha.usuario = new Usuario();
             objUsuarioCancha.cancha = new Cancha();
@@ -54,6 +55,10 @@ namespace Integrador_Reserva.Controllers
             objUsuarioCancha.usuario.usuario_nombre = usuario_nombre;
             objUsuarioCancha.usuario.usuario_razonsocial = usuario_razonsocial;
             objUsuarioCancha.cancha.cancha_usuario_id = usuario_id;
+            objUsuarioCancha.listaTipos = usuarioBusinessLogic.listaTipo();
+            objUsuarioCancha.listaDistritos = usuarioBusinessLogic.listaDistrito();
+            objUsuarioCancha.listaServicios = usuarioBusinessLogic.listaServicio();
+
             return View(objUsuarioCancha);
         }
         [HttpPost]

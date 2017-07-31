@@ -152,6 +152,9 @@
     <Compile Include="Sources\DataAccess\UsuarioDataAccess.cs" />
     <Compile Include="Sources\Entities\Cancha.cs" />
     <Compile Include="Sources\Entities\Usuario.cs" />
+    <Compile Include="Sources\Entities\TipoCancha.cs" />
+    <Compile Include="Sources\Entities\Distrito.cs" />
+    <Compile Include="Sources\Entities\Servicio.cs" />
     <Compile Include="Sources\Logic\UsuarioBusinessLogic.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +170,8 @@
     <Content Include="Views\publico\RegistroReserva.cshtml" />
     <Content Include="Views\publico\TerminosYCondiciones.cshtml" />
     <Content Include="Views\publico\ResultadoBusqueda.cshtml" />
+    <Content Include="Views\publico\RegistroCliente.cshtml" />
+    <Content Include="Views\publico\AñadirCancha.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -59,5 +59,20 @@ namespace Integrador_Reserva.Sources.Logic
 
             return msg;
         }
+
+        public List<TipoCancha> listaTipo()
+        {
+            return usuarioDataAccess.listaTipoCancha();
+        }
+
+        public List<Distrito> listaDistrito()
+        {
+            return usuarioDataAccess.listaDistrito();
+        }
+
+        public List<Servicio> listaServicio()
+        {
+            return usuarioDataAccess.listaServicio();
+        }
     }
 }

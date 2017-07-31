@@ -8,6 +8,9 @@ namespace Integrador_Reserva.Sources.Connection
     public static class Constante
     {
         public const string USP_SEL_LISTAUSUARIO = "selectAllUsuario";
+        public const string USP_SEL_ALLTIPOCANCHA = "selectAllTipoCancha";
+        public const string USP_SEL_ALLDISTRITO = "selectAllDistrito";
+        public const string USP_SEL_ALLSERVICIO = "selectAllServicio";
         public const string USP_INS_USUARIO = "insertUsuario";
         public const string USP_UPD_USUARIO = "updateUsuario";
         public const string CON_DATABASE = "Data Source = THINK362-PC\\SQLEXPRESS; Initial Catalog = reserva; User ID = sa; Password = 3545409";
