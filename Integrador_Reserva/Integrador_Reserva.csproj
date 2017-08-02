@@ -169,9 +169,10 @@
     <Content Include="Views\Usuario\RegistrarCancha.cshtml" />
     <Content Include="Views\publico\RegistroReserva.cshtml" />
     <Content Include="Views\publico\TerminosYCondiciones.cshtml" />
-    <Content Include="Views\publico\ResultadoBusqueda.cshtml" />
     <Content Include="Views\publico\RegistroCliente.cshtml" />
     <Content Include="Views\publico\AñadirCancha.cshtml" />
+    <Content Include="Views\publico\busqueda.cshtml" />
+    <Content Include="Views\publico\ResultadoBusqueda.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

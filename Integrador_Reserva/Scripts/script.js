@@ -11,3 +11,20 @@
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+$(function () {
+    $("#btn_SearchCancha").click(function () {
+        var form = $("#frm-searchCancha");
+
+        $.ajax({
+            url: form.attr("action"),
+            type: "post",
+            data: form.serialize(),
+            success: function () {
+            window.location.href = "/publico/busqueda";
+        }
+        })
+
+    })
+
+})

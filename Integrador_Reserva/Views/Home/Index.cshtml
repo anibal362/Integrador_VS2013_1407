@@ -1,4 +1,4 @@
-﻿
+﻿@model Integrador_Reserva.Models.UsuarioCanchaViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -6,34 +6,33 @@
 <link href="~/Content/css.css" rel="stylesheet" />
 <h2>Index</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span id="search_concept">Buscar por</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#contains">Distrito</a></li>
-                        <li><a href="#its_equal">Servicio</a></li>
-                        <li><a href="#greather_than">hora</a></li>
-                        <li><a href="#less_than">Nombre</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#all">Anything</a></li>
-                    </ul>
+
+
+@using (Html.BeginForm("ResultadoBusqueda", "publico", FormMethod.Get, new { @id = "frm-searchCancha" }))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="input-group">
+                    
+                    
+                    @Html.DropDownListFor(cancha => cancha.cancha.cancha_distrito_id,
+                        new SelectList(Model.listaDistritos, "distrito_id", "distrito"), "Distrito",
+                        new { @class = "btn btn-default dropdown-toggle"})
+
+                    
+                    @Html.TextBoxFor(cancha => cancha.cancha.cancha_distrito,
+                        new { @class = "btn btn-default", @placeholder = "Nombre de la cancha", @Value="" })
+                   
+
+                    <button type="submit" class="btn btn-default glyphicon glyphicon-search" value="buscar"  />
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
             </div>
         </div>
     </div>
-</div>
+}  
 
-
+<br />
 <br /><br /><br />
 <div class="row carousel-holder">
     <div class="col-md-12">
@@ -65,52 +64,6 @@
 </div>
 
 <br />
-
-
-
-
-
-
-<div class="container">
-
-    <div class="date-time row">
-        <div class="col-xs-3 col-xs-offset-2">
-            <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span id="search_concept">Buscar por</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#contains">Distrito</a></li>
-                        <li><a href="#its_equal">Servicio</a></li>
-                        <li><a href="#greather_than">hora</a></li>
-                        <li><a href="#less_than">Nombre</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#all">Anything</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" placeholder="Ingrese lugar de Busqueda">
-            </div>
-        </div>
-        <!-- <div class="co-md-12">-->
-        <div class="form-group col-md-3">
-            <input type="text" class="check form-control" id="check_in" placeholder="Ingrese fecha dd/mm/yyyy">
-        </div>
-        <div class="form-group col-md-3">
-            <select class="date form-control" placeholder="Ingrese la Hora">
-                <option>Please Select</option>
-                <option>10:00</option>
-                <option>12:00</option>
-                <option>14:00</option>
-                <option>16:00</option>
-            </select>
-        </div>
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-        </span>
-    </div>
-</div>
 
 
 

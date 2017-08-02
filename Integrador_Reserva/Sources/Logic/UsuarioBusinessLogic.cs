@@ -60,6 +60,11 @@ namespace Integrador_Reserva.Sources.Logic
             return msg;
         }
 
+        public List<Cancha> ListaCanchasxSearch(Cancha cancha)
+        {
+            return usuarioDataAccess.ListaCanchasxSearch(cancha);
+        }
+
         public List<TipoCancha> listaTipo()
         {
             return usuarioDataAccess.listaTipoCancha();

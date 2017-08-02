@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Integrador_Reserva.Models;
+using Integrador_Reserva.Sources.Entities;
+using Integrador_Reserva.Sources.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,19 @@ namespace Integrador_Reserva.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            UsuarioBusinessLogic usuarioBusinessLogic = new UsuarioBusinessLogic();
+            UsuarioCanchaViewModel objUsuarioCancha = new UsuarioCanchaViewModel();
+            objUsuarioCancha.usuario = new Usuario();
+            objUsuarioCancha.cancha = new Cancha();
+            objUsuarioCancha.usuario.usuario_id = 1;
+            objUsuarioCancha.usuario.usuario_nombre = "controlador";
+            objUsuarioCancha.usuario.usuario_razonsocial = "controlador.SAC";
+            objUsuarioCancha.cancha.cancha_usuario_id = 1;
+            objUsuarioCancha.listaTipos = usuarioBusinessLogic.listaTipo();
+            objUsuarioCancha.listaDistritos = usuarioBusinessLogic.listaDistrito();
+            objUsuarioCancha.listaServicios = usuarioBusinessLogic.listaServicio();
+
+            return View(objUsuarioCancha);
         }
     }
 }

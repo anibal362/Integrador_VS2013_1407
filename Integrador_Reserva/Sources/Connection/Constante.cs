@@ -16,8 +16,12 @@ namespace Integrador_Reserva.Sources.Connection
         public const string CON_DATABASE = "Data Source = THINK362-PC\\SQLEXPRESS; Initial Catalog = reserva; User ID = sa; Password = 3545409";
         public const string CON_DATABASE2 = "Data Source = UTP061509; Initial Catalog = reserva; User ID = sa; Password = alumno";
         public const string CON_DATABASE3 = "Data Source = UTP097174; Initial Catalog = reserva; User ID = sa; Password = alumno";
-        public const string USP_SEL_LISTACANCHA = "selectAllCancha";
+        
         public const string USP_INS_CANCHA = "insertCancha";
         public const string USP_SEL_ALLCANCHAxUSUARIO_ID = "selectAllCanchaxUsuarioId";
+        public const string USP_SEL_ALLCANCHAxCANCHA_DISTRITO_ID = "selectAllCanchaxDistritoId";
+        public const string USP_SEL_ALLCANCHAxCANCHA_DISTRITO = "selectAllCanchaxDistrito";
+        public const string USP_SEL_ALLCANCHAxCANCHA_DISTRITO_ID_DISTRITO_NAME = "selectAllCanchaxDistritoIdDistritoName";
+        public const string USP_SEL_LISTACANCHA = "selectAllCancha";
     }
 }

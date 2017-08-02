@@ -60,6 +60,73 @@ namespace Integrador_Reserva.Sources.DataAccess
             return lista;
         }
 
+        internal List<Cancha> ListaCanchasxSearch(Cancha objCancha)
+        {
+            List<Cancha> listaCanchas = new List<Cancha>();
+            Cancha cancha;
+            iniciarConexion();
+            string procedimiento = "";
+
+            command = new SqlCommand();
+            command.Connection = getCon();
+            command.CommandType = CommandType.StoredProcedure;
+
+            if (objCancha.cancha_distrito_id == 0)
+            {
+                if (objCancha.cancha_distrito.Equals("")  )
+                {
+                    procedimiento = Constante.USP_SEL_LISTACANCHA;
+                }
+                else
+                {
+                    procedimiento = Constante.USP_SEL_ALLCANCHAxCANCHA_DISTRITO;
+                    command.Parameters.Add("@cancha_distrito", SqlDbType.Int).Value = objCancha.cancha_distrito;
+                }
+
+            }
+            else
+            {
+                    command.Parameters.Add("@cancha_distrito_id", SqlDbType.Int).Value = objCancha.cancha_distrito_id;
+
+                if (objCancha.cancha_distrito.Equals("") )
+                {
+                    procedimiento = Constante.USP_SEL_ALLCANCHAxCANCHA_DISTRITO_ID;
+                    
+                }
+                else
+                {
+                    procedimiento = Constante.USP_SEL_ALLCANCHAxCANCHA_DISTRITO_ID_DISTRITO_NAME;
+                    command.Parameters.Add("@cancha_distrito", SqlDbType.Int).Value = objCancha.cancha_distrito;
+                }
+            }
+
+            command.CommandText = procedimiento;
+            
+            using (IDataReader iDataReader = command.ExecuteReader())
+            {
+                int iCancha_id = iDataReader.GetOrdinal("cancha_id");
+                int iCancha_usuario_id = iDataReader.GetOrdinal("cancha_usuario_id");
+                int iCancha_nombre = iDataReader.GetOrdinal("cancha_nombre");
+                int iCancha_descripcion = iDataReader.GetOrdinal("cancha_descripcion");
+                int iCancha_distrito = iDataReader.GetOrdinal("cancha_distrito");
+                int iCancha_tipo = iDataReader.GetOrdinal("cancha_tipo");
+
+                while (iDataReader.Read())
+                {
+                    cancha = new Cancha();
+                    cancha.cancha_id = DataUtil.ValueOfDataBase<Int32>(iDataReader[iCancha_id]);
+                    cancha.cancha_usuario_id = DataUtil.ValueOfDataBase<Int32>(iDataReader[iCancha_usuario_id]);
+                    cancha.cancha_nombre = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_nombre]);
+                    cancha.cancha_descripcion = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_descripcion]);
+                    cancha.cancha_tipo = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_tipo]);
+                    cancha.cancha_distrito = DataUtil.ValueOfDataBase<string>(iDataReader[iCancha_distrito]);
+                    listaCanchas.Add(cancha);
+                }
+            }
+            cerrarConexion();
+            return listaCanchas;
+        }
+
         public List<Servicio> listaServicio()
         {
             List<Servicio> lista = new List<Servicio>();
